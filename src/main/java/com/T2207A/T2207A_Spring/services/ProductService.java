@@ -12,10 +12,6 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-//    public ProductService(ProductRepository productRepository) {
-//        this.productRepository = productRepository;
-//    }
-
     public List<Product> getAll(){
         return productRepository.findAll();
     }
@@ -44,6 +40,11 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public List<Product> searchProduct(String search){
+        return productRepository.findAllByNameContainingOrDescriptionContaining(search, search);
+    }
 
-
+    public List<Product> filterProducts(String name,Integer minPrice,Integer maxPrice){
+        return productRepository.filterProducts(name,minPrice,maxPrice);
+    }
 }

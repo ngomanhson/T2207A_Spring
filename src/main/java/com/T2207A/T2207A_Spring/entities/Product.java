@@ -16,6 +16,10 @@ public class Product {
 
     private int qty;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "category_id", nullable = false)
+//    private Category category;
+
     public int getQty() {
         return qty;
     }
@@ -69,4 +73,5 @@ public class Product {
         this.thumbnail = thumbnail;
         return this;
     }
+
 }

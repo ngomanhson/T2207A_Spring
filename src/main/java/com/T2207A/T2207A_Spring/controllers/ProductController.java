@@ -1,12 +1,8 @@
 package com.T2207A.T2207A_Spring.controllers;
 
 import com.T2207A.T2207A_Spring.entities.Product;
-import com.T2207A.T2207A_Spring.models.ResponseObject;
-import com.T2207A.T2207A_Spring.repositories.ProductRepository;
 import com.T2207A.T2207A_Spring.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,7 +21,7 @@ public class ProductController {
     }
 
     @PostMapping()
-    public Product createProduct(@RequestBody Product product){
+    public Product createProduct(Product product) {
         return productService.createProduct(product);
     }
 
@@ -37,5 +33,18 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
+    }
+
+    @GetMapping("/search")
+    public List<Product> search(String search){
+        return productService.searchProduct(search);
+    }
+
+    @GetMapping("/" +
+            "")
+    public List<Product> filter(@RequestParam(required = false) String name,
+                                @RequestParam(required = false) Integer minPrice,
+                                @RequestParam(required = false) Integer maxPrice){
+        return productService.filterProducts(name,minPrice,maxPrice);
     }
 }
