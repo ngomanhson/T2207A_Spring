@@ -41,8 +41,7 @@ public class ProductController {
         return productService.searchProduct(search);
     }
 
-    @GetMapping("/" +
-            "")
+    @GetMapping("/filter")
     public List<Product> filter(@RequestParam(required = false) String name,
                                 @RequestParam(required = false) Integer minPrice,
                                 @RequestParam(required = false) Integer maxPrice){
